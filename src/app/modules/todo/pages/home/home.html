@@ -1,9 +1,19 @@
 <div class="container">
-  @if (addNewTask() || tasks) {
-    @for (item of tasks; track $index) {
-      
+  @if (addNewTask() && tasks) { @for (item of tasks; track $index) { } } @else {
+  <div class="noTasks">
+    <img
+      src="/img/task-list-null.png"
+      alt="Sua lista está vazia - imagem ilustrativa"
+      loading="eager"
+    />
+    @if (addNewTask() && tasks == null) {
+    <app-add-new-task />
+    } @else {
+    <app-empty-task
+      [addTask]="addNewTask()"
+      (inputAddTaskToggle)="addNewTask.set($event)"
+    />
     }
-  } @else {
-    <app-empty-task [addTask]="addNewTask()" (inputAddTaskToggle)="addNewTask.set($event)"/>
+  </div>
   }
 </div>

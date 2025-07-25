@@ -10,4 +10,13 @@
     margin: auto;
     max-width: 500px;
   }
+
+  .noTasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+  }
 }
