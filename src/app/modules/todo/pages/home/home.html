@@ -1,1 +1,7 @@
-<p>home works!</p>
+<div class="container">
+  @if (tasks) {
+    @for (item of tasks; track $index) {}
+  } @else {
+    <app-empty-task/>
+  }
+</div>
