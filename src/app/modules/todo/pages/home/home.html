@@ -1,7 +1,9 @@
 <div class="container">
-  @if (tasks) {
-    @for (item of tasks; track $index) {}
+  @if (addNewTask() || tasks) {
+    @for (item of tasks; track $index) {
+      
+    }
   } @else {
-    <app-empty-task/>
+    <app-empty-task [addTask]="addNewTask()" (inputAddTaskToggle)="addNewTask.set($event)"/>
   }
 </div>

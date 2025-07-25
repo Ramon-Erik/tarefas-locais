@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { EmptyTask } from "../../components/empty-task/empty-task";
 
 @Component({
@@ -10,4 +10,5 @@ import { EmptyTask } from "../../components/empty-task/empty-task";
 })
 export class Home {
   public tasks = localStorage.getItem('tasks')
+  public addNewTask = signal(false)
 }
