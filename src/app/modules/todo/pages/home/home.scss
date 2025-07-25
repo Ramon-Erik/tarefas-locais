@@ -6,6 +6,8 @@
     align-items: center;
     height: 100vh;
     height: 100dvh;
-    background: var(--black);
+    width: calc(100% - 30px);
+    margin: auto;
+    max-width: 500px;
   }
 }
