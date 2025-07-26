@@ -2,40 +2,61 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  transition: 0.5s;
   width: 100%;
-  border: 1px solid var(--transparent);
-  border-radius: 1.5rem;
+  transition: 0.5s;
+
+  border: none;
   cursor: pointer;
 
   &.btn-primary,
-  &.btn-secondary {
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  &.btn-primary {
-    color: var(--black-010);
+  &.btn-primary-circle {
+    color: var(--black-10);
     background: var(--primary);
 
-    &:hover:not(:disabled) {
+    &:hover {
       background: var(--primary-010);
       color: var(--white);
     }
   }
 
-  &.btn-secondary {
+  &.btn-danger,
+  &.btn-danger-circle {
     color: var(--white);
-    background: var(--secondary);
+    background: var(--red);
 
     &:hover {
-      background: var(--secondary-010);
+      background: var(--red-010);
     }
   }
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
+  &.btn-primary,
+  &.btn-danger {
+    font-size: 16px;
+    border-radius: 50px;
+    padding: 10px 20px;
+  }
+
+  &.btn-primary-circle,
+  &.btn-danger-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+
+    &::after {
+      top: 1px;
+      position: relative;
+    }
+  }
+
+  &.btn-primary-circle {
+    &::after {
+      content: url("/icon/add.svg");
+    }
+  }
+
+  &.btn-danger-circle {
+    &::after {
+      content: url("/icon/delete.svg");
+    }
   }
 }
