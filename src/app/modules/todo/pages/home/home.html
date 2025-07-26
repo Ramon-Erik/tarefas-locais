@@ -1,6 +1,6 @@
 <div class="container">
-  @if (addNewTask() && tasks != null) {
-  <app-task-list />
+  @if (addNewTask() || tasks.length > 0) {
+  <app-task-list  />
   } @else {
   <div class="noTasks">
     <img
@@ -8,8 +8,8 @@
       alt="Sua lista está vazia - imagem ilustrativa"
       loading="eager"
     />
-    @if (addNewTask() && tasks == null) {
-    <app-add-new-task (getNewTask)="newTask.set($event)" />
+    @if (addNewTask() && tasks.length == 0) {
+    <app-add-new-task (getNewTask)="addTaskInList($event)" />
     } @else {
     <app-empty-task
       [addTask]="addNewTask()"

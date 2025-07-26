@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { EmptyTask } from "../../components/empty-task/empty-task";
 import { AddNewTask } from "../../components/add-new-task/add-new-task";
 import { TaskList } from "../../components/task-list/task-list";
@@ -12,7 +12,13 @@ import { TaskList } from "../../components/task-list/task-list";
 })
 export class Home {
   // public tasks = "null"
-  public tasks = localStorage.getItem('tasks')
+  public tasks: Array<{todo: string, completed: boolean}> = JSON.parse(localStorage.getItem('tasks') || '[]')
   public addNewTask = signal(false)
-  public newTask = signal('')
+  public addTaskInList(task: string) {
+    const tasks_local = [...this.tasks]
+    let newTask = signal({todo: task, completed: false})
+    tasks_local.push(newTask())
+    this.tasks = tasks_local
+    localStorage.setItem('tasks', JSON.stringify(newTask()))
+  }
 }
