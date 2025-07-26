@@ -19,6 +19,6 @@ export class Home {
     let newTask = signal({todo: task, completed: false})
     tasks_local.push(newTask())
     this.tasks = tasks_local
-    localStorage.setItem('tasks', JSON.stringify(newTask()))
+    localStorage.setItem('tasks', JSON.stringify(this.tasks))
   }
 }
