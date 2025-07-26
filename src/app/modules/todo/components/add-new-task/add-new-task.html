@@ -1,10 +1,10 @@
 <div class="addNewItem">
   <label class="input-label-text">
-    <input type="text" placeholder="Digite a tarefa" />
+    <input type="text" placeholder="Digite a tarefa" #newTaskInput/>
     <button
       class="btn btn-primary-circle"
       title="Adicionar um novo item"
+      (click)="sendNewTask(newTaskInput.value)"
     ></button>
-    <!-- (click)="focusAndAddItem(inputText.value)" -->
   </label>
 </div>

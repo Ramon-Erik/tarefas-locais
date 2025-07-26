@@ -1,5 +1,7 @@
 <div class="container">
-  @if (addNewTask() && tasks) { @for (item of tasks; track $index) { } } @else {
+  @if (addNewTask() && tasks != null) {
+    <app-task-list/>
+   } @else {
   <div class="noTasks">
     <img
       src="/img/task-list-null.png"
@@ -7,7 +9,7 @@
       loading="eager"
     />
     @if (addNewTask() && tasks == null) {
-    <app-add-new-task />
+    <app-add-new-task (getNewTask)="newTask.set($event)" />
     } @else {
     <app-empty-task
       [addTask]="addNewTask()"
