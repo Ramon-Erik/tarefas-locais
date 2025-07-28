@@ -7,12 +7,21 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
   styleUrl: './task-list.scss'
 })
 export class TaskList {
-  public todoList = signal<TaskItem[]>([])
-  public updateItemCheckbox(id: string, isCompleted: boolean) {}
+  public pendingTasks(): TaskItem[] {
+    return this.#tasksList().filter(task => !task.completed)
+  }
+  public completedTasks(): TaskItem[] {
+    return this.#tasksList().filter(task => task.completed)
+  }
   public deleteItem(id: string) {}
+  #tasksList = signal<TaskItem[]>([])
+  @Output() public toggleTask = new EventEmitter<string>()
+  public sendTaskId(id: string) {
+    return this.toggleTask.emit(id)
+  }
   @Input({
     alias: 'list'
   }) set data(val: TaskItem[]) {
-    this.todoList.set(val)
+    this.#tasksList.set(val)
   }
 }

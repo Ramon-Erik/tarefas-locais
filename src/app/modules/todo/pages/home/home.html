@@ -1,21 +1,24 @@
 <main>
   <div class="container">
-    @if (tasks.length > 0) {
-      <div class="todoList">
-        <app-add-new-task (getNewTask)="addTaskInList($event)" />
-        <app-task-list [list]="tasks" />
-      </div>
+    @if (tasksList().length > 0) {
+    <div class="todoList">
+      <app-add-new-task (getNewTask)="addTaskInList($event)" />
+      <app-task-list
+        [list]="tasksList()"
+        (toggleTask)="toggleTaskStatus($event)"
+      />
+    </div>
     } @else {
-      <div class="noTasks">
-        <img
+    <div class="noTasks">
+      <img
         src="/img/task-list-null.png"
         alt="Sua lista está vazia - imagem ilustrativa"
         loading="eager"
-        />
-        @if (addNewTask() && tasks.length == 0) {
-          <app-add-new-task (getNewTask)="addTaskInList($event)" />
-        } @else {
-          <app-empty-task
+      />
+      @if (addNewTask() && tasksList().length == 0) {
+      <app-add-new-task (getNewTask)="addTaskInList($event)" />
+      } @else {
+      <app-empty-task
         [addTask]="addNewTask()"
         (inputAddTaskToggle)="addNewTask.set($event)"
       />

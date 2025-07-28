@@ -1,29 +1,15 @@
 <div class="task-list">
+  @if (pendingTasks().length > 0) {
+  <h3>Tarefas pendentes</h3>
   <ul>
-    @for (item of todoList(); track $index) { @if (item.completed) {
-    <h3>Tarefas pendentes</h3>
-    <li>
-      <label class="input-label-text">
-        <input
-          type="text"
-          placeholder="Digite a tarefa"
-          [value]="item.value"
-          #newTaskInput
-        />
-      </label>
-    </li>
-    } }
-  </ul>
-  <h3>Tarefas concluídas</h3>
-  <ul>
-    @for (item of todoList(); track $index) { @if (!item.completed) {
+    @for (item of pendingTasks(); track $index) {
     <li>
       <label class="input-label-text">
         <input
           type="checkbox"
           #inputCheckbox
           [checked]="item.completed"
-          (input)="updateItemCheckbox(item.id, inputCheckbox.checked)"
+          (change)="sendTaskId(item.id)"
         />
         <input
           type="text"
@@ -31,12 +17,44 @@
           [value]="item.value"
           #newTaskInput
         />
-         <button class="btn btn-danger-circle" title="Delete este item" (click)="deleteItem(item.id)"></button>
+        <button
+          class="btn btn-danger-circle"
+          title="Delete este item"
+          (click)="deleteItem(item.id)"
+        ></button>
       </label>
     </li>
-    } }
+    }
   </ul>
+  } @if (completedTasks().length > 0) {
+  <h3>Tarefas concluídas</h3>
+  <ul>
+    @for (item of completedTasks(); track $index) {
+    <li>
+      <label class="input-label-text">
+        <input
+          type="checkbox"
+          #inputCheckbox
+          [checked]="item.completed"
+          (change)="sendTaskId(item.id)"
+        />
+        <input
+          type="text"
+          placeholder="Digite a tarefa"
+          [value]="item.value"
+          #newTaskInput
+        />
+        <button
+          class="btn btn-danger-circle"
+          title="Delete este item"
+          (click)="deleteItem(item.id)"
+        ></button>
+      </label>
+    </li>
+    }
+  </ul>
+  }
   <button class="btn btn-danger" title="Deletar esta tarefa">
-    Deletar todos as tarefas
+    Deletar todas as tarefas (completas e pendentes)
   </button>
 </div>
