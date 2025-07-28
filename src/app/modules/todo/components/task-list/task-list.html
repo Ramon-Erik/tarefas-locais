@@ -7,7 +7,7 @@
         <input
           type="text"
           placeholder="Digite a tarefa"
-          [value]="item.task"
+          [value]="item.value"
           #newTaskInput
         />
       </label>
@@ -28,7 +28,7 @@
         <input
           type="text"
           placeholder="Digite a tarefa"
-          [value]="item.task"
+          [value]="item.value"
           #newTaskInput
         />
          <button class="btn btn-danger-circle" title="Delete este item" (click)="deleteItem(item.id)"></button>

@@ -11,7 +11,6 @@ import { TaskList } from "../../components/task-list/task-list";
   styleUrl: './home.scss'
 })
 export class Home {
-  // public tasks = "null"
   public tasks: TaskItem[] = JSON.parse(localStorage.getItem('tasks') || '[]')
   public addNewTask = signal(false)
   public addTaskInList(task: string) {
@@ -19,7 +18,7 @@ export class Home {
       const tasks_local = [...this.tasks]
       const timestamp = new Date().getTime()
       const id = `ID${timestamp}`
-      const newTask = signal({id, task, completed: false})
+      const newTask = signal({id, value: task, completed: false})
       
       tasks_local.push(newTask())
       this.tasks = tasks_local
