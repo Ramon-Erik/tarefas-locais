@@ -11,8 +11,10 @@ import { TaskList } from "../../components/task-list/task-list";
   styleUrl: './home.scss'
 })
 export class Home {
-  public tasks: TaskItem[] = JSON.parse(localStorage.getItem('tasks') || '[]')
-  public addNewTask = signal(false)
+  public loadTasks(): TaskItem[] {
+    const savedTasks = localStorage.getItem('tasks')
+    return savedTasks ? JSON.parse(savedTasks) : []
+  } 
   public addTaskInList(task: string) {
     if (task.trim()) {
       const tasks_local = [...this.tasks]
@@ -25,4 +27,6 @@ export class Home {
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
     }
   }
+  public tasks: TaskItem[] = this.loadTasks()
+  public addNewTask = signal(false)
 }
