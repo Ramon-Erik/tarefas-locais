@@ -1,5 +1,7 @@
 interface TaskItem {
-  id: string;
+  readonly id: string;
   value: string;
   completed: boolean;
+  createdAt: number;
+  completedAt?: number;
 }
