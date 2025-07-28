@@ -12,14 +12,15 @@ import { TaskList } from "../../components/task-list/task-list";
 })
 export class Home {
   // public tasks = "null"
-  public tasks: Array<{id: string, todo: string, completed: boolean}> = JSON.parse(localStorage.getItem('tasks') || '[]')
+  public tasks: TaskItem[] = JSON.parse(localStorage.getItem('tasks') || '[]')
   public addNewTask = signal(false)
   public addTaskInList(task: string) {
     if (task.trim()) {
       const tasks_local = [...this.tasks]
       const timestamp = new Date().getTime()
       const id = `ID${timestamp}`
-      const newTask = signal({id, todo: task, completed: false})
+      const newTask = signal({id, task, completed: false})
+      
       tasks_local.push(newTask())
       this.tasks = tasks_local
       localStorage.setItem('tasks', JSON.stringify(this.tasks))
