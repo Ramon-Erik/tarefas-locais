@@ -1,3 +1,3 @@
-const enum StorageKeys {
-  TaskList = 'task-list'
+export enum StorageKeys {
+  TaskListLocal = 'task-list'
 }
