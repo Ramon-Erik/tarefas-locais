@@ -17,6 +17,7 @@ export class TaskList {
   #tasksList = signal<TaskItem[]>([]);
   @Output() public deleteTask = new EventEmitter<string>();
   @Output() public toggleTask = new EventEmitter<string>();
+  @Output() public editTask = new EventEmitter<{id: string, value?: string}>();
   @Input({
     alias: 'list',
   })
@@ -24,12 +25,14 @@ export class TaskList {
     this.#tasksList.set(val);
   }
   readonly TaskActions = TaskActions;
-  public sendTaskId(id: string, action: TaskActions) {
+  public sendTaskId(id: string, action: TaskActions, value?: string) {
     switch (action) {
       case TaskActions.TOGGLE:
         return this.toggleTask.emit(id);
       case TaskActions.DELETE:
         return this.deleteTask.emit(id);
+      case TaskActions.EDIT:
+        return this.editTask.emit({id, value});
     }
   }
 }

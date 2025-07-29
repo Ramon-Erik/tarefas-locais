@@ -4,7 +4,7 @@
   <ul>
     @for (item of pendingTasks(); track item.id) {
     <li>
-      <label class="input-label-text">
+      <label class="input-label-text" [for]="item.id">
         <input
           type="checkbox"
           [checked]="item.completed"
@@ -13,7 +13,12 @@
         <input
           type="text"
           placeholder="Digite a tarefa"
+          autocomplete="off"
           [value]="item.value"
+          [id]="item.id"
+          (input)="
+            sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)
+          "
           #newTaskInput
         />
         <button
@@ -30,7 +35,7 @@
   <ul>
     @for (item of completedTasks(); track item.id) {
     <li>
-      <label class="input-label-text">
+      <label class="input-label-text" [for]="item.id">
         <input
           type="checkbox"
           [checked]="item.completed"
@@ -39,7 +44,12 @@
         <input
           type="text"
           placeholder="Digite a tarefa"
+          autocomplete="off"
           [value]="item.value"
+          [id]="item.id"
+          (input)="
+            sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)
+          "
           #newTaskInput
         />
         <button

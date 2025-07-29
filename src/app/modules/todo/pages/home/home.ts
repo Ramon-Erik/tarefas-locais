@@ -83,6 +83,18 @@ export class Home {
       }
     })
   }
+  public saveEditedTask(event: {id: string, value?: string}) {
+    this.#tasksList.update((tasks) => 
+      tasks.map((task) => 
+      task.id === event.id
+      ? {
+        ...task,
+        value: event.value ? event.value : task.value 
+      }
+      : task
+    ))
+    this.saveTasks()
+  }
   #tasksList = signal<TaskItem[]>(this.loadTasks());
   public tasksList = this.#tasksList.asReadonly();
   public addNewTask = signal(false);
