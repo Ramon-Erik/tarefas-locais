@@ -1,4 +1,5 @@
 export enum TaskActions {
   DELETE = 'deleteSingleTask',
-  TOGGLE = 'toggleSingleTask'
+  TOGGLE = 'toggleSingleTask',
+  EDIT = 'editSingleTask'
 }
