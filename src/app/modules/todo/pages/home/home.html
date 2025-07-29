@@ -6,13 +6,13 @@
       <app-task-list
         [list]="tasksList()"
         (toggleTask)="toggleTaskStatus($event)"
-        (deleteTask)="deleteSingleTask($event)"
+        (deleteTask)="confirmAndDeleteSingleTask($event)"
         (editTask)="saveEditedTask($event)"
         />
       <button
         class="btn btn-danger"
         title="Deletar esta tarefa"
-        (click)="confirmAndeleteAllTasks()"
+        (click)="confirmAndDeleteAllTasks()"
         >
         Deletar todas as tarefas (completas e pendentes)
       </button>

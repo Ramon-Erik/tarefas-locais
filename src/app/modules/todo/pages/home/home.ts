@@ -55,7 +55,7 @@ export class Home {
         this.#tasksList.set([])
         this.addNewTask.set(false)
   }
-  public deleteSingleTask(id: string) {
+  public confirmAndDeleteSingleTask(id: string) {
     const taskName = this.#tasksList().map(task => task.id === id? task : undefined)[0]?.value
     console.log(taskName)
     Swal.fire({
@@ -75,7 +75,7 @@ export class Home {
       }
     })
   }
-  public confirmAndeleteAllTasks() {
+  public confirmAndDeleteAllTasks() {
     Swal.fire({
       title: "Apagar <strong>todas</strong> as tasks",
       html: "Deseja mesmo apagar <strong>todas</strong> as tasks?<br><small>Esta ação não pode ser desfeita!</small>",
