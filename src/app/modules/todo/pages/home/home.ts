@@ -51,8 +51,21 @@ export class Home {
     this.saveTasks();
   }
   public deleteSingleTask(id: string) {
-    console.log('deletar task');
-    
+    const taskName = this.#tasksList().map(task => task.id === id? task : undefined)[0]?.value
+    console.log(taskName)
+    Swal.fire({
+      title: "Apagar <strong>uma</strong> task",
+      html: `Deseja mesmo apagar a task "${taskName}"?<br><small>Esta ação não pode ser desfeita!</small>`,
+      icon: 'warning',
+      confirmButtonText: 'Sim, apagar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.#tasksList.update((tasks) => tasks.filter((task) => task.id !== id))
+        this.saveTasks()
+      }
+    })
   }
   public confirmAndeleteAllTasks() {
     Swal.fire({

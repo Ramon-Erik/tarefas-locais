@@ -8,7 +8,7 @@
         <input
           type="checkbox"
           [checked]="item.completed"
-          (change)="sendTaskId(item.id)"
+          (change)="sendTaskId(item.id, TaskActions.TOGGLE)"
         />
         <input
           type="text"
@@ -19,7 +19,7 @@
         <button
           class="btn btn-danger-circle"
           title="Delete este item"
-          (click)="deleteItem(item.id)"
+          (click)="sendTaskId(item.id, TaskActions.DELETE)"
         ></button>
       </label>
     </li>
@@ -34,7 +34,7 @@
         <input
           type="checkbox"
           [checked]="item.completed"
-          (change)="sendTaskId(item.id)"
+          (change)="sendTaskId(item.id, TaskActions.TOGGLE)"
         />
         <input
           type="text"
@@ -45,14 +45,11 @@
         <button
           class="btn btn-danger-circle"
           title="Delete este item"
-          (click)="deleteItem(item.id)"
+          (click)="sendTaskId(item.id, TaskActions.DELETE)"
         ></button>
       </label>
     </li>
     }
   </ul>
   }
-  <button class="btn btn-danger" title="Deletar esta tarefa">
-    Deletar todas as tarefas (completas e pendentes)
-  </button>
 </div>

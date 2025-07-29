@@ -6,7 +6,8 @@
       <app-task-list
         [list]="tasksList()"
         (toggleTask)="toggleTaskStatus($event)"
-      />
+        (deleteTask)="deleteSingleTask($event)"
+        />
       <button
         class="btn btn-danger"
         title="Deletar esta tarefa"
