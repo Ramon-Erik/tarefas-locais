@@ -2,12 +2,11 @@
   @if (pendingTasks().length > 0) {
   <h3>Tarefas pendentes</h3>
   <ul>
-    @for (item of pendingTasks(); track $index) {
+    @for (item of pendingTasks(); track item.id) {
     <li>
       <label class="input-label-text">
         <input
           type="checkbox"
-          #inputCheckbox
           [checked]="item.completed"
           (change)="sendTaskId(item.id)"
         />
@@ -29,12 +28,11 @@
   } @if (completedTasks().length > 0) {
   <h3>Tarefas concluídas</h3>
   <ul>
-    @for (item of completedTasks(); track $index) {
+    @for (item of completedTasks(); track item.id) {
     <li>
       <label class="input-label-text">
         <input
           type="checkbox"
-          #inputCheckbox
           [checked]="item.completed"
           (change)="sendTaskId(item.id)"
         />

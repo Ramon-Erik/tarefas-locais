@@ -37,8 +37,6 @@ export class Home {
     }
   }
   public toggleTaskStatus(id: string) {
-    console.log('fui chamado');
-    
     this.#tasksList.update((tasks) =>
       tasks.map((task) =>
         task.id === id
