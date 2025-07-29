@@ -2,19 +2,21 @@
   <div class="container">
     @if (tasksList().length > 0) {
     <div class="todoList">
-      <app-add-new-task (getNewTask)="addTaskInList($event)" />
-      <app-task-list
-        [list]="tasksList()"
-        (toggleTask)="toggleTaskStatus($event)"
-        (deleteTask)="confirmAndDeleteSingleTask($event)"
-        (editTask)="saveEditedTask($event)"
-      />
+      <div class="mainContent">
+        <app-add-new-task (getNewTask)="addTaskInList($event)" />
+        <app-task-list
+          [list]="tasksList()"
+          (toggleTask)="toggleTaskStatus($event)"
+          (deleteTask)="confirmAndDeleteSingleTask($event)"
+          (editTask)="saveEditedTask($event)"
+        />
+      </div>
       <button
         class="btn btn-danger"
         title="Deletar esta tarefa"
         (click)="confirmAndDeleteAllTasks()"
       >
-        Deletar todas as tarefas (completas e pendentes)
+        Deletar todas as tasks
       </button>
     </div>
     } @else {
@@ -36,3 +38,8 @@
     }
   </div>
 </main>
+<footer>
+  <p>
+    Desenvolvido por Ramon
+  </p>
+</footer>

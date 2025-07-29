@@ -7,4 +7,27 @@
     gap: 25px;
     width: 100%;
   }
+
+  .todoList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 95dvh;
+    padding: 20px 0;
+    width: 100%;
+    
+    .mainContent {
+      display: block;
+      width: 100%;
+      
+      app-add-new-task {
+        border-bottom: 2px solid var(--black-010);
+      }
+    }
+  }
+
+  footer {
+    text-align: center;
+  }
 }
