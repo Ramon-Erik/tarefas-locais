@@ -16,9 +16,7 @@
           autocomplete="off"
           [value]="item.value"
           [id]="item.id"
-          (input)="
-            sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)
-          "
+          (input)="sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)"
           #newTaskInput
         />
         <button
@@ -47,9 +45,7 @@
           autocomplete="off"
           [value]="item.value"
           [id]="item.id"
-          (input)="
-            sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)
-          "
+          (input)="sendTaskId(item.id, TaskActions.EDIT, newTaskInput.value)"
           #newTaskInput
         />
         <button

@@ -3,8 +3,7 @@ import { EmptyTask } from '../../components/empty-task/empty-task';
 import { AddNewTask } from '../../components/add-new-task/add-new-task';
 import { TaskList } from '../../components/task-list/task-list';
 import { StorageKeys } from '../../enum/storage-keys.enum';
-import Swal from 'sweetalert2'
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -51,55 +50,60 @@ export class Home {
     this.saveTasks();
   }
   public deleteTasksAndStorage() {
-    localStorage.removeItem(StorageKeys.TaskListLocal)
-        this.#tasksList.set([])
-        this.addNewTask.set(false)
+    localStorage.removeItem(StorageKeys.TaskListLocal);
+    this.#tasksList.set([]);
+    this.addNewTask.set(false);
   }
   public confirmAndDeleteSingleTask(id: string) {
-    const taskName = this.#tasksList().map(task => task.id === id? task : undefined)[0]?.value
-    console.log(taskName)
+    const taskName = this.#tasksList().map((task) =>
+      task.id === id ? task : undefined
+    )[0]?.value;
+    console.log(taskName);
     Swal.fire({
-      title: "Apagar <strong>uma</strong> task",
+      title: 'Apagar <strong>uma</strong> task',
       html: `Deseja mesmo apagar a task "${taskName}"?<br><small>Esta ação não pode ser desfeita!</small>`,
       icon: 'warning',
       confirmButtonText: 'Sim, apagar',
       showCancelButton: true,
-      cancelButtonText: 'Cancelar'
-    }).then(result => {
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
       if (result.isConfirmed) {
-        this.#tasksList.update((tasks) => tasks.filter((task) => task.id !== id))
-        this.saveTasks()
+        this.#tasksList.update((tasks) =>
+          tasks.filter((task) => task.id !== id)
+        );
+        this.saveTasks();
         if (this.#tasksList().length === 0) {
-          this.deleteTasksAndStorage()
+          this.deleteTasksAndStorage();
         }
       }
-    })
+    });
   }
   public confirmAndDeleteAllTasks() {
     Swal.fire({
-      title: "Apagar <strong>todas</strong> as tasks",
-      html: "Deseja mesmo apagar <strong>todas</strong> as tasks?<br><small>Esta ação não pode ser desfeita!</small>",
+      title: 'Apagar <strong>todas</strong> as tasks',
+      html: 'Deseja mesmo apagar <strong>todas</strong> as tasks?<br><small>Esta ação não pode ser desfeita!</small>',
       icon: 'warning',
       confirmButtonText: 'Sim, apagar tudo!',
       showCancelButton: true,
-      cancelButtonText: 'Cancelar'
-    }).then(result => {
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
       if (result.isConfirmed) {
-        this.deleteTasksAndStorage()
+        this.deleteTasksAndStorage();
       }
-    })
+    });
   }
-  public saveEditedTask(event: {id: string, value?: string}) {
-    this.#tasksList.update((tasks) => 
-      tasks.map((task) => 
-      task.id === event.id
-      ? {
-        ...task,
-        value: event.value ? event.value : task.value 
-      }
-      : task
-    ))
-    this.saveTasks()
+  public saveEditedTask(event: { id: string; value?: string }) {
+    this.#tasksList.update((tasks) =>
+      tasks.map((task) =>
+        task.id === event.id
+          ? {
+              ...task,
+              value: event.value ? event.value : task.value,
+            }
+          : task
+      )
+    );
+    this.saveTasks();
   }
   #tasksList = signal<TaskItem[]>(this.loadTasks());
   public tasksList = this.#tasksList.asReadonly();

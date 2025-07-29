@@ -1,7 +1,12 @@
 <div class="addNewItem">
   <h2>Adicione uma tarefa</h2>
   <label class="input-label-text">
-    <input type="text" placeholder="Digite a tarefa" #newTaskInput (keyup.enter)="sendNewTaskAndClear(newTaskInput.value)" />
+    <input
+      type="text"
+      placeholder="Digite a tarefa"
+      #newTaskInput
+      (keyup.enter)="sendNewTaskAndClear(newTaskInput.value)"
+    />
     <button
       class="btn btn-primary-circle"
       title="Adicionar um novo item"

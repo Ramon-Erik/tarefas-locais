@@ -17,7 +17,10 @@ export class TaskList {
   #tasksList = signal<TaskItem[]>([]);
   @Output() public deleteTask = new EventEmitter<string>();
   @Output() public toggleTask = new EventEmitter<string>();
-  @Output() public editTask = new EventEmitter<{id: string, value?: string}>();
+  @Output() public editTask = new EventEmitter<{
+    id: string;
+    value?: string;
+  }>();
   @Input({
     alias: 'list',
   })
@@ -32,7 +35,7 @@ export class TaskList {
       case TaskActions.DELETE:
         return this.deleteTask.emit(id);
       case TaskActions.EDIT:
-        return this.editTask.emit({id, value});
+        return this.editTask.emit({ id, value });
     }
   }
 }

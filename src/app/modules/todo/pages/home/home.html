@@ -8,12 +8,12 @@
         (toggleTask)="toggleTaskStatus($event)"
         (deleteTask)="confirmAndDeleteSingleTask($event)"
         (editTask)="saveEditedTask($event)"
-        />
+      />
       <button
         class="btn btn-danger"
         title="Deletar esta tarefa"
         (click)="confirmAndDeleteAllTasks()"
-        >
+      >
         Deletar todas as tarefas (completas e pendentes)
       </button>
     </div>
