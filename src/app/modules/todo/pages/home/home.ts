@@ -50,6 +50,11 @@ export class Home {
     );
     this.saveTasks();
   }
+  public deleteTasksAndStorage() {
+    localStorage.removeItem(StorageKeys.TaskListLocal)
+        this.#tasksList.set([])
+        this.addNewTask.set(false)
+  }
   public deleteSingleTask(id: string) {
     const taskName = this.#tasksList().map(task => task.id === id? task : undefined)[0]?.value
     console.log(taskName)
@@ -64,6 +69,9 @@ export class Home {
       if (result.isConfirmed) {
         this.#tasksList.update((tasks) => tasks.filter((task) => task.id !== id))
         this.saveTasks()
+        if (this.#tasksList().length === 0) {
+          this.deleteTasksAndStorage()
+        }
       }
     })
   }
@@ -77,9 +85,7 @@ export class Home {
       cancelButtonText: 'Cancelar'
     }).then(result => {
       if (result.isConfirmed) {
-        localStorage.removeItem(StorageKeys.TaskListLocal)
-        this.#tasksList.set([])
-        this.addNewTask.set(false)
+        this.deleteTasksAndStorage()
       }
     })
   }
