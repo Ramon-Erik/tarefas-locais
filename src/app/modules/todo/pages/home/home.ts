@@ -57,7 +57,6 @@ export class Home {
   public confirmAndeleteAllTasks() {
     Swal.fire({
       title: "Apagar <strong>todas</strong> as tasks",
-      text: "Deseja mesmo apagar todas as tasks? Isso não pode ser desfeito.",
       html: "Deseja mesmo apagar <strong>todas</strong> as tasks?<br><small>Esta ação não pode ser desfeita!</small>",
       icon: 'warning',
       confirmButtonText: 'Sim, apagar tudo!',
