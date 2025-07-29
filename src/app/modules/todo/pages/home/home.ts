@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
 import { EmptyTask } from '../../components/empty-task/empty-task';
 import { AddNewTask } from '../../components/add-new-task/add-new-task';
 import { TaskList } from '../../components/task-list/task-list';
 import { StorageKeys } from '../../enum/storage-keys.enum';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -49,6 +49,27 @@ export class Home {
       )
     );
     this.saveTasks();
+  }
+  public deleteSingleTask(id: string) {
+    console.log('deletar task');
+    
+  }
+  public confirmAndeleteAllTasks() {
+    Swal.fire({
+      title: "Apagar <strong>todas</strong> as tasks",
+      text: "Deseja mesmo apagar todas as tasks? Isso não pode ser desfeito.",
+      html: "Deseja mesmo apagar <strong>todas</strong> as tasks?<br><small>Esta ação não pode ser desfeita!</small>",
+      icon: 'warning',
+      confirmButtonText: 'Sim, apagar tudo!',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar'
+    }).then(result => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(StorageKeys.TaskListLocal)
+        this.#tasksList.set([])
+        this.addNewTask.set(false)
+      }
+    })
   }
   #tasksList = signal<TaskItem[]>(this.loadTasks());
   public tasksList = this.#tasksList.asReadonly();
